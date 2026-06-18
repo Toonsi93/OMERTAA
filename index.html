@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝐎𝐌𝐄𝐑𝐓𝐀 𝐓𝐄𝐁𝐄𝐗 - 𝐅𝐢𝐯𝐞𝐌</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        omertaa: {
+                            red: '#ff0000',
+                            darkRed: '#800000',
+                            black: '#0A0A0B',
+                            gray: '#121214',
+                            lightGray: '#1C1C1F',
+                            accent: '#ff4d4d'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        gaming: ['Rajdhani', 'sans-serif']
+                    },
+                    boxShadow: {
+                        'red-glow': '0 0 20px rgba(255, 0, 0, 0.3)',
+                        'red-glow-heavy': '0 0 35px rgba(255, 0, 0, 0.55)',
+                        'inner-glow': 'inset 0 0 15px rgba(255, 0, 0, 0.2)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Style CSS externe -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-omertaa-black text-white font-sans antialiased overflow-x-hidden min-h-screen relative">
+
+    <!-- Background Effects -->
+    <div class="fixed inset-0 bg-grid z-0 pointer-events-none"></div>
+    <div class="fixed inset-0 radial-overlay z-0 pointer-events-none"></div>
+
+    <!-- Header -->
+    <header class="sticky top-0 w-full z-50 glass border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="relative w-12 h-12 flex items-center justify-center rounded-lg bg-black/50 border border-omertaa-red/30 p-1 group-hover:border-omertaa-red transition-all duration-300">
+                    <img id="main-logo" src="img/logo.png" alt="OMERTAA" class="object-contain w-full h-full" onerror="this.onerror=null; this.src='https://placehold.co/100x100/121214/ff0000?text=O';">
+                </div>
+                <div>
+                    <span class="font-gaming text-2xl font-extrabold tracking-wider text-white group-hover:text-omertaa-red transition-colors duration-300">OMERTAA <span class="text-omertaa-red">PVP</span></span>
+                    <div class="flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span class="text-[10px] uppercase tracking-widest text-emerald-400 font-semibold font-gaming">Serveur En Ligne</span>
+                    </div>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold uppercase tracking-wider font-gaming">
+                <a href="#accueil" class="hover:text-omertaa-red transition-colors duration-200 text-white/90">Accueil</a>
+                <a href="#mappings" class="hover:text-omertaa-red transition-colors duration-200 text-white/60">Mappings</a>
+                <a href="#boutique" class="hover:text-omertaa-red transition-colors duration-200 text-white/60">Boutique & Armes</a>
+                <a href="#stats" class="hover:text-omertaa-red transition-colors duration-200 text-white/60">Statistiques</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <a href="https://discord.gg/hPze8JsNhw" target="_blank" class="hidden sm:flex items-center gap-2 px-5 py-2.5 bg-[#5865F2] hover:bg-[#4752C4] rounded-lg font-semibold text-sm transition-all duration-300 shadow-md shadow-blue-600/15 font-gaming uppercase tracking-wider">
+                    <i class="fab fa-discord text-base"></i> Discord
+                </a>
+                <button onclick="copyServerIP()" class="flex items-center gap-2 px-5 py-2.5 bg-omertaa-red hover:bg-omertaa-accent rounded-lg font-bold text-sm transition-all duration-300 shadow-red-glow font-gaming uppercase tracking-wider">
+                    <i class="fas fa-play text-xs"></i> Jouer <span class="hidden lg:inline">(Connexion)</span>
+                </button>
+                <button onclick="toggleMobileMenu()" class="md:hidden text-white/80 hover:text-omertaa-red text-xl focus:outline-none ml-2">
+                    <i id="mobile-menu-icon" class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden glass border-t border-omertaa-red/20 absolute left-0 w-full px-4 py-6 space-y-4">
+            <a href="#accueil" onclick="toggleMobileMenu()" class="block text-lg font-semibold font-gaming uppercase tracking-wider text-white hover:text-omertaa-red">Accueil</a>
+            <a href="#mappings" onclick="toggleMobileMenu()" class="block text-lg font-semibold font-gaming uppercase tracking-wider text-white/80 hover:text-omertaa-red">Mappings</a>
+            <a href="#boutique" onclick="toggleMobileMenu()" class="block text-lg font-semibold font-gaming uppercase tracking-wider text-white/80 hover:text-omertaa-red">Boutique & Armes</a>
+            <a href="#stats" onclick="toggleMobileMenu()" class="block text-lg font-semibold font-gaming uppercase tracking-wider text-white/80 hover:text-omertaa-red">Statistiques</a>
+            <div class="pt-4 border-t border-white/5 flex flex-col gap-3">
+                <a href="https://discord.gg/hPze8JsNhw" target="_blank" class="flex items-center justify-center gap-2 px-5 py-3 bg-[#5865F2] rounded-lg font-semibold text-sm font-gaming uppercase tracking-wider">
+                    <i class="fab fa-discord"></i> Discord
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="relative pt-12 pb-24 md:pt-20 md:pb-36 overflow-hidden z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 text-center lg:text-left space-y-8">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-omertaa-red/10 border border-omertaa-red/30 text-omertaa-red text-xs font-semibold uppercase tracking-widest font-gaming animate-bounce">
+                        <i class="fas fa-fire"></i> Saison 1 : Arena & Outlaws active
+                    </div>
+                    <h1 class="font-gaming text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-none uppercase">
+                        DOMINE L'ARÈNE SUR<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-omertaa-red to-omertaa-accent text-glow">OMERTAA PVP</span>
+                    </h1>
+                    <p class="text-gray-400 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed font-light">
+                        L'expérience PVP ultime sur FiveM. Un serveur optimisé à 144 FPS constants, des combats d'une fluidité irréprochable, des voitures de sport importées exclusives, des mappings uniques et des kits d'armes d'élites pour imposer ta loi.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <button onclick="copyServerIP()" class="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-omertaa-red hover:bg-omertaa-accent text-white font-extrabold text-base rounded-xl transition-all duration-300 shadow-red-glow-heavy font-gaming uppercase tracking-wider group hover:scale-[1.02]">
+                            <i class="fas fa-sign-in-alt group-hover:translate-x-1 transition-transform"></i> Rejoindre le serveur
+                        </button>
+                        <a href="https://discord.gg/hPze8JsNhw" target="_blank" class="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-bold text-base rounded-xl transition-all duration-300 border border-white/10 font-gaming uppercase tracking-wider hover:scale-[1.02]">
+    <img src="https://cdn.discordapp.com/emojis/1206343279017336842.png" alt="BadgeDiscordStaff" class="w-6 h-6 object-contain"> Rejoindre notre Discord
+</a>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 pt-6 max-w-md mx-auto lg:mx-0">
+                        <div class="glass-card p-3 rounded-xl text-center">
+                            <span class="block font-gaming text-2xl font-bold text-omertaa-red">NO LAG</span>
+                            <span class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">144 FPS Opti</span>
+                        </div>
+                        <div class="glass-card p-3 rounded-xl text-center">
+                            <span class="block font-gaming text-2xl font-bold text-omertaa-red">EXCLUSIF</span>
+                            <span class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">80+ Armes & Mappings</span>
+                        </div>
+                        <div class="glass-card p-3 rounded-xl text-center">
+                            <span class="block font-gaming text-2xl font-bold text-omertaa-red">0 SEC</span>
+                            <span class="text-[10px] text-gray-400 uppercase tracking-wider font-semibold">Fast Connect</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 flex justify-center relative">
+                    <div class="relative w-full max-w-[420px] glass-card rounded-3xl p-6 border border-omertaa-red/30 shadow-red-glow flex flex-col space-y-4">
+                        <div class="flex justify-between items-center border-b border-white/5 pb-3">
+                            <span class="font-gaming text-xs font-bold uppercase tracking-wider text-omertaa-red flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-omertaa-red animate-ping"></span>
+                                <i class="fas fa-cube"></i> Item VIP Exclusif
+                            </span>
+                            <span class="text-[10px] text-gray-500 uppercase font-mono tracking-widest">Aperçu 3D interactif</span>
+                        </div>
+                        <div class="relative w-full aspect-square rounded-2xl overflow-hidden bg-black/60 border border-white/5 flex flex-col justify-between">
+                            <iframe 
+                                title="Omerta Gang pendant" 
+                                class="w-full h-full rounded-2xl relative z-10"
+                                frameborder="0" 
+                                allowfullscreen 
+                                mozallowfullscreen="true" 
+                                webkitallowfullscreen="true" 
+                                allow="autoplay; fullscreen; xr-spatial-tracking" 
+                                xr-spatial-tracking 
+                                execution-while-out-of-viewport 
+                                execution-while-not-rendered 
+                                web-share 
+                                src="https://sketchfab.com/models/b4ace112d3bb4e3b9d74eec1bcb80666/embed?autospin=1&autostart=1&preload=1&transparent=1&ui_controls=0&ui_infos=0&ui_watermark=0">
+                            </iframe>
+                        </div>
+                        <div class="text-center pt-1">
+                            <h3 class="font-gaming text-xl font-extrabold text-white uppercase tracking-wider text-glow">Pendentif Gang Omerta</h3>
+                        </div>
+                        <div class="w-full bg-black/50 border border-white/5 rounded-xl p-3 flex justify-between items-center text-sm relative z-10">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-emerald-500 animate-ping absolute"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-500 relative"></span>
+                                <span class="font-semibold text-gray-300">Joueurs Connectés</span>
+                            </div>
+                            <span class="font-gaming font-extrabold text-lg text-emerald-400" id="live-players-count">147 / 250</span>
+                        </div>
+                        <button onclick="copyServerIP()" class="w-full py-3 bg-white/5 hover:bg-omertaa-red/25 border border-white/10 hover:border-omertaa-red rounded-xl text-xs font-bold transition-all duration-300 relative z-10 flex items-center justify-center gap-2 uppercase tracking-wide font-gaming">
+                            <i class="far fa-copy"></i> Copier l'IP de connexion
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mappings Section -->
+    <section id="mappings" class="relative py-24 border-t border-white/5 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto space-y-4 mb-16">
+                <span class="text-omertaa-red text-sm font-extrabold uppercase tracking-widest font-gaming block"><i class="fas fa-map-marked-alt"></i> Territoires & Conquêtes</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold font-gaming uppercase tracking-wide text-glow">Mappings exclusifs optimisés</h2>
+                <p class="text-gray-400 text-sm sm:text-base">Combats dans des décors uniques et modélisés pour des affrontements intenses et fluides sans perte de FPS.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass-card rounded-2xl overflow-hidden relative group">
+                    <div class="absolute top-4 left-4 z-10 bg-omertaa-red border border-white/10 font-gaming text-xs font-extrabold uppercase tracking-wider px-3 py-1.5 rounded-md">
+                        <i class="fas fa-shield-alt mr-1"></i> Zone PVP Intense
+                    </div>
+                    <div class="aspect-video w-full overflow-hidden relative border-b border-white/5">
+                        <img src="img/mapping/alcatraz.png" alt="Prison d'Alcatraz" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/600x350/121214/ff0000?text=Prison+Alcatraz';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="font-gaming text-3xl font-bold uppercase tracking-wide text-white">La Prison d'Alcatraz</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Un complexe pénitencier légendaire réaménagé pour le combat en combat rapproché (CQB). Pièges, couloirs sombres, cours de prison et miradors pour les snipers d'élite.</p>
+                        <div class="flex items-center gap-3 pt-2 text-xs text-omertaa-red font-gaming font-bold uppercase tracking-widest">
+                            <span><i class="fas fa-circle text-[8px] mr-1.5"></i> Spawn Armes</span>
+                            <span><i class="fas fa-circle text-[8px] mr-1.5"></i> Tournoi 5v5</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl overflow-hidden relative group">
+                    <div class="absolute top-4 left-4 z-10 bg-omertaa-red border border-white/10 font-gaming text-xs font-extrabold uppercase tracking-wider px-3 py-1.5 rounded-md">
+                        <i class="fas fa-crown mr-1"></i> Quartier des Gangs
+                    </div>
+                    <div class="aspect-video w-full overflow-hidden relative border-b border-white/5">
+                        <img src="img/mapping/scarface.png" alt="Villa de Scarface" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/600x350/121214/ff0000?text=Villa+Scarface';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="font-gaming text-3xl font-bold uppercase tracking-wide text-white">La Villa de Scarface</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Prends le contrôle de ce palace luxueux. Parfait pour les assauts de groupe, les prises d'otages et la domination de territoire avec ton gang.</p>
+                        <div class="flex items-center gap-3 pt-2 text-xs text-omertaa-red font-gaming font-bold uppercase tracking-widest">
+                            <span><i class="fas fa-circle text-[8px] mr-1.5"></i> QG Personnalisables</span>
+                            <span><i class="fas fa-circle text-[8px] mr-1.5"></i> Prise de Coffre</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl overflow-hidden relative group">
+                    <div class="absolute top-4 left-4 z-10 bg-omertaa-red border border-white/10 font-gaming text-xs font-extrabold uppercase tracking-wider px-3 py-1.5 rounded-md">
+                        <i class="fas fa-crosshairs mr-1"></i> Zone Urbaine Complexe
+                    </div>
+                    <div class="aspect-video w-full overflow-hidden relative border-b border-white/5">
+                        <img src="img/mapping/favelas.png" alt="Les Favelas" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/600x350/121214/ff0000?text=Favelas+PVP';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="font-gaming text-3xl font-bold uppercase tracking-wide text-white">Les Favelas OMERTAA</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Un labyrinthe vertical et chaotique. Idéal pour le PVP urbain avec d'innombrables couvertures, des tyroliennes rapides et des combats intenses sur les toits.</p>
+                        <div class="flex items-center gap-3 pt-2 text-xs text-omertaa-red font-gaming font-bold uppercase tracking-widest">
+                            <span><i class="fas fa-circle text-[8px] mr-1.5"></i> Combat de Toits</span>
+                            <span><i class="fas fa-circle text-[8px] mr-1.5"></i> Haute Verticalité</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl overflow-hidden relative group">
+                    <div class="absolute top-4 left-4 z-10 bg-omertaa-red border border-white/10 font-gaming text-xs font-extrabold uppercase tracking-wider px-3 py-1.5 rounded-md">
+                        <i class="fas fa-car-crash mr-1"></i> Course & Combat Véhicules
+                    </div>
+                    <div class="aspect-video w-full overflow-hidden relative border-b border-white/5">
+                        <img src="img/mapping/cayoperico.png" alt="Cayo Perico" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/600x350/121214/ff0000?text=Cayo+Perico+Arena';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <h3 class="font-gaming text-3xl font-bold uppercase tracking-wide text-white">Cayo Perico Arena</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">L'île tropicale réimaginée en immense zone de guerre. Idéal pour les raids de véhicules importés blindés et les missions de capture aériennes ou maritimes.</p>
+                        <div class="flex items-center gap-3 pt-2 text-xs text-omertaa-red font-gaming font-bold uppercase tracking-widest">
+                            <span><i class="fas fa-circle text-[8px] mr-1.5"></i> Combat Véhicules</span>
+                            <span><i class="fas fa-circle text-[8px] mr-1.5"></i> Missions Air/Mer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Section -->
+    <section id="boutique" class="relative py-24 bg-black/40 border-t border-white/5 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto space-y-4 mb-12">
+                <span class="text-omertaa-red text-sm font-extrabold uppercase tracking-widest font-gaming block"><i class="fas fa-shopping-cart"></i> Boutique & Équipements</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold font-gaming uppercase tracking-wide text-glow">L'Arsenal Ultime</h2>
+                <p class="text-gray-400 text-sm sm:text-base">Inclus un catalogue de armes dévastatrices, véhicules custom importés et nos Packs d'exception.</p>
+            </div>
+            <div class="max-w-4xl mx-auto mb-10 flex flex-col md:flex-row gap-4 items-center justify-between">
+                <div class="relative w-full md:w-80">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+                        <i class="fas fa-search text-omertaa-red"></i>
+                    </span>
+                    <input type="text" id="shop-search" oninput="handleSearch()" class="w-full pl-10 pr-4 py-3 bg-black/60 border border-white/10 rounded-xl focus:border-omertaa-red focus:outline-none focus:ring-1 focus:ring-omertaa-red font-semibold text-sm transition-all text-white placeholder-gray-500" placeholder="Rechercher une arme, voiture...">
+                </div>
+                <div class="flex flex-wrap items-center justify-center gap-2 font-gaming w-full md:w-auto">
+                    <button onclick="filterShop('all')" id="tab-all" class="shop-tab active px-5 py-2.5 rounded-lg text-xs font-extrabold uppercase tracking-widest border border-omertaa-red bg-omertaa-red text-white shadow-red-glow transition-all duration-300">Tout Voir</button>
+                    <button onclick="filterShop('armes')" id="tab-armes" class="shop-tab px-5 py-2.5 rounded-lg text-xs font-extrabold uppercase tracking-widest border border-white/10 bg-white/5 text-white/75 hover:text-white hover:border-omertaa-red/50 transition-all duration-300"><i class="fas fa-gun mr-1.5"></i> Armes (110)</button>
+                    <button onclick="filterShop('vehicules')" id="tab-vehicules" class="shop-tab px-5 py-2.5 rounded-lg text-xs font-extrabold uppercase tracking-widest border border-white/10 bg-white/5 text-white/75 hover:text-white hover:border-omertaa-red/50 transition-all duration-300"><i class="fas fa-car mr-1.5"></i> Véhicules (12)</button>
+                    <button onclick="filterShop('packs')" id="tab-packs" class="shop-tab px-5 py-2.5 rounded-lg text-xs font-extrabold uppercase tracking-widest border border-white/10 bg-white/5 text-white/75 hover:text-white hover:border-omertaa-red/50 transition-all duration-300"><i class="fas fa-box-open mr-1.5"></i> Packs</button>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="shop-grid"></div>
+            <div id="shop-empty" class="hidden text-center py-16 space-y-4">
+                <div class="text-4xl text-omertaa-red"><i class="fas fa-question-circle"></i></div>
+                <h3 class="font-gaming text-2xl font-bold uppercase text-white">Aucun produit trouvé</h3>
+                <p class="text-gray-500 text-sm">Essaye de modifier ta recherche ou change de catégorie.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="relative py-12 border-y border-white/5 glass z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center space-y-2">
+                    <span class="block text-4xl sm:text-5xl font-extrabold font-gaming text-white text-glow">140+</span>
+                    <span class="block text-xs sm:text-sm text-gray-400 uppercase tracking-widest font-semibold">Joueurs en simultané</span>
+                </div>
+                <div class="text-center space-y-2">
+                    <span class="block text-4xl sm:text-5xl font-extrabold font-gaming text-white text-glow">144Hz</span>
+                    <span class="block text-xs sm:text-sm text-gray-400 uppercase tracking-widest font-semibold">Tickrate & FPS Opti</span>
+                </div>
+                <div class="text-center space-y-2">
+                    <span class="block text-4xl sm:text-5xl font-extrabold font-gaming text-white text-glow">99.9%</span>
+                    <span class="block text-xs sm:text-sm text-gray-400 uppercase tracking-widest font-semibold">Uptime Serveur</span>
+                </div>
+                <div class="text-center space-y-2">
+                    <span class="block text-4xl sm:text-5xl font-extrabold font-gaming text-white text-glow">5,200+</span>
+                    <span class="block text-xs sm:text-sm text-gray-400 uppercase tracking-widest font-semibold">Membres Discord</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Banner -->
+    <section class="relative py-20 z-10 overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass border border-omertaa-red/30 rounded-3xl p-8 md:p-12 text-center space-y-8 relative overflow-hidden shadow-red-glow">
+                <div class="absolute -right-24 -bottom-24 w-64 h-64 bg-omertaa-red rounded-full blur-3xl opacity-15"></div>
+                <div class="relative z-10 max-w-2xl mx-auto space-y-4">
+                    <h2 class="font-gaming text-4xl sm:text-5xl font-extrabold uppercase tracking-wide">La rue n'attend que toi</h2>
+                    <p class="text-gray-400 text-sm sm:text-base">Rejoins dès maintenant notre communauté de passionnés de PVP. Fais-toi un nom et domine le classement 𝑶𝑴𝑬𝑹𝑻𝑨𝑨 𝑷𝑽𝑷.</p>
+                </div>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
+                    <button onclick="copyServerIP()" class="w-full sm:w-auto px-8 py-4 bg-omertaa-red hover:bg-omertaa-accent text-white font-extrabold text-base rounded-xl transition-all duration-300 shadow-red-glow font-gaming uppercase tracking-wider">
+                        <i class="fas fa-play mr-2"></i> Rejoindre Directement
+                    </button>
+                    <a href="https://discord.gg/hPze8JsNhw" target="_blank" class="w-full sm:w-auto px-8 py-4 bg-[#5865F2] hover:bg-[#4752C4] text-white font-extrabold text-base rounded-xl transition-all duration-300 font-gaming uppercase tracking-wider flex items-center justify-center gap-2">
+                        <i class="fab fa-discord"></i> Rejoindre notre Discord
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative bg-omertaa-black border-t border-white/5 pt-16 pb-8 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="space-y-4 md:col-span-2">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-black/50 border border-omertaa-red/30 p-1">
+                            <img src="img/logo.png" alt="OMERTAA" class="object-contain w-full h-full" onerror="this.onerror=null; this.src='https://placehold.co/100x100/121214/ff0000?text=O';">
+                        </div>
+                        <span class="font-gaming text-2xl font-extrabold tracking-wider text-white">OMERTAA <span class="text-omertaa-red">PVP</span></span>
+                    </div>
+                    <p class="text-gray-400 text-xs leading-relaxed max-w-sm">𝑶𝑴𝑬𝑹𝑻𝑨𝑨 𝑷𝑽𝑷 est un serveur de jeu compétitif FiveM. Nous assurons la meilleure qualité et fluidité de combat possible avec un catalogue complet d'activités PVP.</p>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-gaming text-lg font-bold uppercase tracking-wider text-white">Liens utiles</h4>
+                    <ul class="space-y-2 text-sm text-gray-400 font-medium">
+                        <li><a href="#accueil" class="hover:text-omertaa-red transition-colors">Accueil</a></li>
+                        <li><a href="#mappings" class="hover:text-omertaa-red transition-colors">Mappings</a></li>
+                        <li><a href="#boutique" class="hover:text-omertaa-red transition-colors">Boutique Officielle</a></li>
+                        <li><a href="https://discord.gg/hPze8JsNhw" target="_blank" class="hover:text-omertaa-red transition-colors">Discord</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-gaming text-lg font-bold uppercase tracking-wider text-white">Contact & Support</h4>
+                    <p class="text-gray-400 text-xs leading-relaxed">Pour toute demande, partenariat ou support, merci d'ouvrir un ticket sur notre serveur Discord officiel.</p>
+                    <a href="https://discord.gg/hPze8JsNhw" target="_blank" class="inline-flex items-center gap-2 text-xs font-semibold uppercase font-gaming text-omertaa-red hover:text-white transition-colors">
+                        Ouvrir un ticket Discord <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+                <p>&copy; 2026 𝑶𝑴𝑬𝑹𝑻𝑨𝑨 𝑷𝑽𝑷. Tous droits réservés.</p>
+                <p class="text-[10px] text-gray-600 max-w-md text-center sm:text-right">𝑶𝑴𝑬𝑹𝑻𝑨𝑨 𝑷𝑽𝑷 n'est en aucun cas affilié à Rockstar Games, Take-Two Interactive ou Cfx.re.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="shop-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md hidden opacity-0 transition-opacity duration-300">
+        <div class="relative glass max-w-lg w-full rounded-2xl p-6 md:p-8 space-y-6 shadow-red-glow transform scale-95 transition-transform duration-300" id="shop-modal-content">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-omertaa-red text-xl">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="space-y-2">
+                <span class="text-omertaa-red text-xs font-extrabold uppercase tracking-widest font-gaming block"><i class="fas fa-shopping-cart"></i> Demande d'acquisition</span>
+                <h3 class="font-gaming text-3xl font-extrabold uppercase tracking-wide text-white" id="modal-title">Nom de l'objet</h3>
+                <div class="inline-block bg-white/5 border border-white/10 px-3 py-1.5 rounded-md text-glow font-gaming text-lg font-extrabold text-omertaa-red" id="modal-price">0.00 €</div>
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed" id="modal-desc">Description de l'article sélectionné.</p>
+            <div class="bg-black/50 border border-white/5 rounded-xl p-4 space-y-3">
+                <h4 class="font-gaming text-sm font-bold uppercase tracking-wider text-white"><i class="fab fa-discord text-blue-400"></i> Comment finaliser l'achat ?</h4>
+                <ol class="list-decimal list-inside text-xs text-gray-400 space-y-2 leading-normal">
+                    <li>Rejoins notre serveur Discord officiel.</li>
+                    <li>Rends-toi dans le salon <span class="text-white">#🎟️-ticket-boutique</span>.</li>
+                    <li>Crée un ticket d'achat de boutique.</li>
+                    <li>Donne le code d'article ci-dessous à un administrateur.</li>
+                </ol>
+            </div>
+            <div class="space-y-2">
+                <span class="text-[10px] text-gray-500 uppercase tracking-widest font-semibold block">Code de l'article (à copier)</span>
+                <div class="flex items-center gap-2 bg-black/60 border border-omertaa-red/30 rounded-lg p-3">
+                    <code class="text-xs text-gray-300 font-mono flex-1 select-all" id="modal-item-code">OMERTAA-TICKET-XXX</code>
+                    <button onclick="copyItemCode()" class="text-gray-400 hover:text-omertaa-red text-sm px-2 py-1 bg-white/5 hover:bg-white/10 rounded border border-white/10" title="Copier le code">
+                        <i class="far fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center gap-3 pt-2">
+                <a id="modal-discord-btn" href="https://discord.gg/hPze8JsNhw" target="_blank" class="w-full sm:flex-1 py-3.5 bg-[#5865F2] hover:bg-[#4752C4] rounded-xl font-bold font-gaming text-sm text-center uppercase tracking-wider flex items-center justify-center gap-2">
+                    <i class="fab fa-discord"></i> Ouvrir ticket boutique
+                </a>
+                <button onclick="closeModal()" class="w-full sm:w-auto px-6 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl font-semibold font-gaming text-sm uppercase tracking-wider">
+                    Annuler
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Player -->
+    <audio id="audio-player"></audio>
+    <div id="cyber-player" class="fixed bottom-6 left-6 z-50 glass border border-omertaa-red/30 rounded-2xl p-4 shadow-red-glow flex items-center gap-4 max-w-xs transition-all duration-300 transform translate-y-0 pointer-events-auto">
+        <div id="player-disk-container" class="relative w-12 h-12 rounded-full overflow-hidden border border-omertaa-red/50 flex-shrink-0 bg-black/60 shadow-red-glow cursor-pointer" onclick="if(isMinimized) togglePlayerMinimize();">
+            <img id="player-cover" src="music/cover.png" alt="Cover" class="w-full h-full object-cover transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/100x100/121214/ff0000?text=OMERTAA';">
+            <div class="absolute inset-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-omertaa-black rounded-full border border-omertaa-red/50"></div>
+        </div>
+        <div id="player-info-controls" class="flex-1 min-w-[160px] flex flex-col justify-center">
+            <p id="player-title" class="font-gaming text-sm font-bold uppercase tracking-wider text-white truncate max-w-[150px]">Omertaa Theme 1</p>
+            <p id="player-status" class="text-[9px] text-gray-500 uppercase tracking-widest font-semibold">En pause</p>
+            <div class="flex items-center gap-2 mt-1.5">
+                <button onclick="prevTrack()" class="text-gray-400 hover:text-omertaa-red text-xs transition-colors" title="Précédent">
+                    <i class="fas fa-step-backward"></i>
+                </button>
+                <button onclick="togglePlay()" id="player-play-btn" class="w-7 h-7 rounded-full bg-omertaa-red hover:bg-omertaa-accent flex items-center justify-center text-white text-[10px] transition-all duration-300 shadow-red-glow" title="Lire / Pause">
+                    <i class="fas fa-play ml-0.5" id="play-icon"></i>
+                </button>
+                <button onclick="nextTrack()" class="text-gray-400 hover:text-omertaa-red text-xs transition-colors" title="Suivant">
+                    <i class="fas fa-step-forward"></i>
+                </button>
+                <div class="flex items-center gap-1 ml-auto group/vol relative">
+                    <i class="fas fa-volume-up text-[10px] text-gray-500 group-hover/vol:text-omertaa-red"></i>
+                    <input type="range" id="player-volume" min="0" max="1" step="0.1" value="0.5" oninput="setVolume(this.value)" class="w-10 h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-omertaa-red">
+                </div>
+            </div>
+        </div>
+        <button onclick="togglePlayerMinimize()" class="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-omertaa-gray border border-white/10 hover:border-omertaa-red flex items-center justify-center text-[8px] text-gray-400 hover:text-white transition-all">
+            <i id="minimize-icon" class="fas fa-minus"></i>
+        </button>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>
+
+    <!-- Script JS externe -->
+    <script src="script.js"></script>
+</body>
+</html>

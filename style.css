@@ -1,0 +1,111 @@
+/* ============================================================
+   STYLES SEPARES POUR OMERTAA PVP
+   ============================================================ */
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #0A0A0B;
+}
+::-webkit-scrollbar-thumb {
+    background: #ff0000;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #ff4d4d;
+}
+
+/* Effet Glassmorphism */
+.glass {
+    background: rgba(10, 10, 11, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+.glass-card {
+    background: rgba(18, 18, 20, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 0, 0, 0.12);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+    border-color: rgba(255, 0, 0, 0.5);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.25);
+    transform: translateY(-4px);
+}
+
+/* Texte avec glow rouge */
+.text-glow {
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+}
+
+/* Grille de fond */
+.bg-grid {
+    background-size: 40px 40px;
+    background-image: 
+        linear-gradient(to right, rgba(255, 0, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 0, 0, 0.04) 1px, transparent 1px);
+}
+
+.radial-overlay {
+    background: radial-gradient(circle at 50% 50%, rgba(255, 0, 0, 0.12) 0%, rgba(10, 10, 11, 1) 80%);
+}
+
+/* Animation rotation lente */
+@keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+    animation: spin-slow 12s linear infinite;
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Personnalisation des inputs range */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ff0000;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ff0000;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+/* Style des onglets actifs de la boutique */
+.shop-tab.active {
+    background-color: #ff0000 !important;
+    border-color: #ff0000 !important;
+    color: white !important;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3) !important;
+}
