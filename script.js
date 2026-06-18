@@ -1,7 +1,7 @@
 // ============================================================
 // 0. CONFIGURATION WEBHOOK DISCORD
 // ============================================================
-const WEBHOOK_URL = 'https://discord.com/api/webhooks/1517077179698118697/UR1PoOwuL67U6iQdI-HzVLSu-qIlgqRLPHl5AjPfEq6tZbrNvrAhNHXmjaxGJWN2gYah';
+const WEBHOOK_URL = 'https://discord.com/api/webhooks/1517262677578354822/TqMilQgkt4gAKaNNdVjQjEd8biEneQb29A8ylURSZubqVfedkZJmB0_oqID6mD5WDYnu';
 
 // ============================================================
 // 1. BASE DE DONNÉES SHOP
